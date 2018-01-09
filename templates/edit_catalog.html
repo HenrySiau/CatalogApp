@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Edit catalog {% endblock %}
+
+{% block content %}
+    <div class="container justify-content-center">
+        {% include "header.html" %}
+            <div class="col-8">
+                <p>Edit catalog</p>
+                <form action="#" method="post" class="form-group">
+                    <p class="col-form-label">Catalog Name</p>
+                    <input name="csrf_token" type=hidden value="{{ session.get('csrf_token') }}">
+                    <input type="text" class="form-control" name="name" value="{{ catalog_name }}">
+                    <div class="form-group m-2">
+                        <input type="reset" value="Reset" class="btn-info">
+                        <input type="submit" value="Update" class="btn-info">
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% include "footer.html" %}
+    </div>
+{% endblock %}

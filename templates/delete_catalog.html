@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %} Delete catalog {% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include "header.html" %}
+        <div class="col-8">
+            <p>Delete catalog</p>
+            {% if num_items == 0 %}
+                <form action="#" method="post" class="form-group">
+                    <p class="col-form-label">Are you sure you wan to delete {{ catalog_name }}?</p>
+                    <button href="{{ url_for('console') }}" class="btn-primary">Cancel</button>
+                    <input name="csrf_token" type=hidden value="{{ session.get('csrf_token') }}">
+
+                    <input type="submit" value="Delete" class="btn-danger">
+                </form>
+            {% else %}
+                <p>you can only delete a empty catalog, there are {{ num_items }} items under this catalog, consider <a
+                        href="/catalog/{{ catalog_name }}/edit">rename</a>?</p>
+            {% endif %}
+
+        </div>
+        {% include "footer.html" %}
+    </div>
+{% endblock %}

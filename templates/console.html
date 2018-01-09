@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} Console {% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        {% include "header.html" %}
+
+        <div class="row ">
+            <div class="col-4 card">
+                <h3>My Catalogs</h3>
+                <a href="{{ url_for('new_catalog') }}" class="btn-primary mb-2 pl-2">Create New Catalog</a>
+                <ul>
+                    {% for catalog in catalogs %}
+                        <li>{{ catalog.name }}
+                            <a href="catalog/{{ catalog.name }}/edit" class="">Edit</a>
+                            <a href="/catalog/{{ catalog.name }}/delete" class="text-danger">Delete</a>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-8">
+                <h3>My items</h3>
+                <p><a href="{{ url_for('new_item') }}" class="btn-primary">Create New item</a></p>
+                <ul>
+                    {% for item in items %}
+                        <li>{{ item.name }}
+                            <a href="item/{{ item.slug }}/edit" class="">Edit</a>
+                            <a href="item/{{ item.slug }}/delete" class="text-danger">Delete</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% include "footer.html" %}
+    </div>
+{% endblock %}

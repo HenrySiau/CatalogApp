@@ -1,0 +1,29 @@
+<div class="bg-success row justify-content-between">
+    <h3 class="flex-column ml-3 mt-2"><a href="{{ url_for('index') }}">Catalog App</a></h3>
+    {% if session.get('user_name') %}
+
+        <div class="flex-column justify-content-end align-content-end">
+            <p class="mt-3 mb-1">Welcome
+            <a href="{{ url_for('console') }}" class="">{{ session.get('user_name') }}</a>
+            <a href="/logout" class="btn-dark p-1 m-2">logout</a>
+            </p>
+        </div>
+
+    {% else %}
+        <div class="flex-column justify-content-end align-content-end mb-1">
+        <p class="mr-3 mt-3 mb-0"><a href="/login" class="m-2 btn-warning px-1">login</a> <a href="/register" class="btn-warning px-1">Register</a></p>
+</div>
+    {% endif %}
+</div>
+
+<div class="bg-success">
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+</div>

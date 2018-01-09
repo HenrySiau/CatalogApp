@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block head %}
+    <meta name="google-signin-client_id" content="{{ app.config['GOOGLE_CLIENT_ID'] }}">
+{% endblock %}
+{% block title %} Login{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include "header.html" %}
+        <div class="row justify-content-center">
+            <div class="col-4 card my-3">
+                <h3>Login</h3>
+                <form action="#" method="post" class="form-group">
+                    <p class="col-form-label">E-mail</p>
+                    <input type="text" class="form-control" name="email">
+                    <p class="col-form-label">Password</p>
+                    <input type="password" class="form-control" name="password">
+                    <div class="form-group m-2">
+                        <input name="csrf_token" type=hidden value="{{ session.get('csrf_token') }}">
+                        <input type="reset" value="Reset" class="btn-info">
+                        <input type="submit" value="Login" class="btn-info">
+                    </div>
+                </form>
+                <div id="my-signin2"></div>
+            </div>
+        </div>
+        {% include "footer.html" %}
+    </div>
+    </div>
+
+    <script>
+        function onSuccess(googleUser) {
+            var id_token = googleUser.getAuthResponse().id_token;
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'http://localhost:8000/tokensignin');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function () {
+                var feedback = xhr.responseText;
+                console.log('Server side feedback: ' + feedback);
+                if(feedback == 'success'){
+                    window.location = "http://localhost:8000/my-console";}
+                    else {
+                    window.location = "http://localhost:8000";
+                }
+
+            };
+            xhr.send('idtoken=' + id_token);
+
+        }
+
+        function onFailure(error) {
+            console.log(error);
+        }
+
+        function renderButton() {
+            gapi.signin2.render('my-signin2', {
+                'scope': 'profile email',
+                'width': 240,
+                'height': 50,
+                'longtitle': true,
+                'theme': 'dark',
+                'onsuccess': onSuccess,
+                'onfailure': onFailure
+            });
+        }
+    </script>
+
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} Create a new item {% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% include "header.html" %}
+        <div class="row">
+            <div class="col-4 card">
+                <h3>Catalogs</h3>
+                <ul>
+                    {% for catalog in catalogs %}
+                        <li>{{ catalog.name }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-8">
+                <p>Create a new Item</p>
+                <form action="#" method="post" class="form-group">
+                    <input name="csrf_token" type=hidden value="{{ session.get('csrf_token') }}">
+                    <p class="col-form-label">Item Name</p>
+                    <input type="text" class="form-control" name="name">
+                    <p class="col-form-label">URL slug</p>
+                    <input type="text" class="form-control" name="slug">
+                    <p class="col-form-label">Description</p>
+                    <input type="text" class="form-control" name="description">
+                    <select name="catalog_id" id="">
+                        {% for catalog in catalogs %}
+                            <option value="{{ catalog.id }}">{{ catalog.name }}</option>
+                        {% endfor %}
+                    </select>
+
+                    <div class="form-group m-2">
+                        <input type="reset" value="Reset" class="btn-info">
+                        <input type="submit" value="Create" class="btn-info">
+                    </div>
+                </form>
+            </div>
+        </div>
+        {% include "footer.html" %}
+    </div>
+{% endblock %}

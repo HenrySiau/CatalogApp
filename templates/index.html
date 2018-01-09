@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} Index {% endblock %}
+
+{% block content %}
+    <div class="container">
+
+        {% include "header.html" %}
+
+        <div class="row">
+            <div class="col-4 card">
+                <h3>Catalogs</h3>
+                <ul>
+                    {% for catalog in catalogs %}
+                        <li><a href="/{{ catalog.name }}/items">{{ catalog.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-8">
+                <h3>Latest items</h3>
+                <ul>
+                    {% for item in items %}
+                        <li><a href="/item/{{ item.slug }}">{{ item.name }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% include "footer.html" %}
+    </div>
+{% endblock %}
