@@ -14,6 +14,10 @@ def index():
         result += str(user.name)
     return 'This is main page, users: ' + result
 
+@app.route("/hello")
+def hello():
+    return 'hello'
+
 
 if __name__ == '__main__':
     app.run()
