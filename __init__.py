@@ -1,5 +1,5 @@
 from flask import Flask
-from CatalogApp.models import User
+from models import User
 
 app = Flask(__name__)
 app.config.from_object('config')

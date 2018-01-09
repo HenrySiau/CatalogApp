@@ -1,5 +1,5 @@
-from CatalogApp.models import User
-from CatalogApp.database import db_session
+from models import User
+from database import db_session
 users = User.query.all()
 new_user = User(name='Henry', email='henry@gmail.com')
 db_session.add(new_user)

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, BOOLEAN
 from sqlalchemy.orm import relationship
-from CatalogApp.database import Base
+from database import Base
 import datetime
 
 
