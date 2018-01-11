@@ -32,15 +32,16 @@
         function onSuccess(googleUser) {
             var id_token = googleUser.getAuthResponse().id_token;
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://localhost:8000/tokensignin');
+            // xhr.open('POST', 'http://localhost:5000/tokensignin');
+            xhr.open('POST', '/tokensignin');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function () {
                 var feedback = xhr.responseText;
                 console.log('Server side feedback: ' + feedback);
                 if(feedback == 'success'){
-                    window.location = "http://localhost:8000/my-console";}
+                    window.location = "/my-console";}
                     else {
-                    window.location = "http://localhost:8000";
+                    window.location = "/";
                 }
 
             };

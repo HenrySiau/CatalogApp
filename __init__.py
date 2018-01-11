@@ -383,14 +383,14 @@ def token_login():
             session['user_name'] = user_name
             session['user_email'] = user_email
             session['user_id'] = User.query.filter(User.email == user_email).first().id
-
+            return 'success'
         except ValueError:
             # Invalid token
             flash('Invalid token')
             print('Invalid token')
             return redirect(url_for('login'))
         print('success')
-        return 'success'
+
     else:
         return redirect(url_for('login'))
 
