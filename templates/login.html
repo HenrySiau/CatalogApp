@@ -32,15 +32,16 @@
         function onSuccess(googleUser) {
             var id_token = googleUser.getAuthResponse().id_token;
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'http://www.skynet.run/tokensignin');
+            // xhr.open('POST', 'http://localhost:5000/tokensignin');
+            xhr.open('POST', "{{url_for('token_login', _external=True)}}");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function () {
                 var feedback = xhr.responseText;
                 console.log('Server side feedback: ' + feedback);
                 if(feedback == 'success'){
-                    window.location = 'http://www.skynet.run/my-console';}
+                    window.location = "{{url_for('console', _external=True)}}";}
                     else {
-                    window.location = "http://www.skynet.run/";
+                    window.location = "{{url_for('index', _external=True)}}";
                 }
 
             };
