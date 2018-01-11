@@ -33,15 +33,15 @@
             var id_token = googleUser.getAuthResponse().id_token;
             var xhr = new XMLHttpRequest();
             // xhr.open('POST', 'http://localhost:5000/tokensignin');
-            xhr.open('POST', '/tokensignin');
+            xhr.open('POST', "{{url_for('token_login')}}");
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             xhr.onload = function () {
                 var feedback = xhr.responseText;
                 console.log('Server side feedback: ' + feedback);
                 if(feedback == 'success'){
-                    window.location = "/my-console";}
+                    window.location = "{{url_for('console')}}";}
                     else {
-                    window.location = "/";
+                    window.location = "{{url_for('index')}}";
                 }
 
             };
