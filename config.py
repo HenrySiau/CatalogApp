@@ -5,6 +5,6 @@ instance_config.py will also overwrite the configs in this page
 """
 DEBUG = True
 SQLALCHEMY_ECHO = True
-SERVER_NAME = 'www.skynet.run'
+# SERVER_NAME = 'www.skynet.run'
 
 
