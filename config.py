@@ -7,3 +7,4 @@ DEBUG = True
 SQLALCHEMY_ECHO = True
 SERVER_NAME = 'www.skynet.run'
 
+
