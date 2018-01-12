@@ -24,5 +24,5 @@ Web server: Apache2
 ip address: 13.59.217.2<br>
 URL: skynet.run<br>
 The web server responds on port 80<br>
-At the server side, I created a new user and given dudo access, also allow the new user to ssh the server with modified port.<br>
+At the server side, I created a new user and given sudo access, also allow the new user to ssh the server with modified port.
 The fire wall had set to only allow SSH, HTTP and NTP.
